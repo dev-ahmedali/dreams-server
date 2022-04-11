@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from "body-parser"
 import cors from "cors"
 import mongoose from 'mongoose';
+import 'dotenv/config';
 
 import postRoutes from './routes/posts.js';
 
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.l0sv8.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.l0sv8.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
